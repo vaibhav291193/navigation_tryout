@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Navigation Tryout</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/disclosure/examples/css/disclosure-navigation.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+<script src="https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/disclosure/examples/js/disclosureMenu.js"></script>
+</head>
+
+<body>
+<div class="row" >
+<div class="col-md-2"></div>
+<div class="col-md-8 row" >
+<nav aria-label="Primary">
+<div class=""col-md-8" style="display:inline;">
+
+<div class="tabs" style="display:inline;">
+      
+      <div role="tablist" style="display:inline;">
+        <button type="button" role="tab" aria-selected="true" 
+            id="apples-tab" aria-controls="apples-panel" 
+            style="background: yellow">
+          Apples
+        </button>
+        <button type="button" role="tab" aria-selected="false" 
+            id="bananas-tab" aria-controls="bananas-panel">
+          Bananas
+        </button>
+        <button type="button" role="tab" aria-selected="false" 
+            id="peaches-tab" aria-controls="peaches-panel">
+          Peaches
+        </button>
+      </div>
+</div>      
+
+<div class="col-md-4" style="display:inline;">
+<a href="#">Shop</a>
+<button>Sign in</button>
+<a lang="fr" href="#">Fr</a>
+
+</div>
+</nav>
+
+<nav aria-label="Secondary">
+      <div id="apples-panel"  
+           aria-labelledby="apples-tab">
+<nav>        
+<ul id="exTest" class="disclosure-nav">
+    <li>
+      <button type="button"
+              aria-expanded="true"
+              aria-controls="id_about_menu">
+        About
+      </button>
+      <ul id="id_about_menu">
+        <li>
+          <a href="#mythical-page-content">
+            Overview
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Administration
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Facts
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Campus Tours
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button type="button"
+              aria-expanded="true"
+              aria-controls="id_admissions_menu">
+        Admissions
+      </button>
+      <ul id="id_admissions_menu">
+        <li>
+          <a href="#mythical-page-content">
+            Apply
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Tuition
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Sign Up
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Visit
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Photo Tour
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Connect
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button type="button"
+              aria-expanded="true"
+              aria-controls="id_academics_menu">
+        Academics
+      </button>
+      <ul id="id_academics_menu">
+        <li>
+          <a href="#mythical-page-content">
+            Colleges & Schools
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Programs of Study
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Honors Programs
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Online Courses
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Course Explorer
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Register for Class
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Academic Calendar
+          </a>
+        </li>
+        <li>
+          <a href="#mythical-page-content">
+            Transcripts
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+      </div>
+      <div id="bananas-panel" role="tabpanel" 
+           aria-labelledby="bananas-tab" style="display: none">
+        <h3>Bananas</h3>
+        <p>Don't slip on your banana peel!</p>
+        <a href="banana.html">Peel me</a>
+      </div>
+      <div id="peaches-panel" role="tabpanel" 
+           aria-labelledby="peaches-tab" style="display: none">
+        <h3>Peaches</h3>
+        <p>Peaches keep peaching!</p>
+        <a href="peach.html">Get peachy</a>
+      </div>
+      
+    </div><!-- .tabs -->
+    </nav>
+    
+      
+
+
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+<script>
+      var tabs = document.querySelectorAll("[role=tab]"),
+          tabList = document.querySelector("[role=tablist]"),
+          tabPanels = document.querySelectorAll("[role=tabpanel]"); 
+      
+      for (i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener("click", showTabPanel);
+      }
+      
+      function showTabPanel() { 
+        var target = event.target;
+        
+        // close any open tabs and reset tab button
+        for (i = 0; i < tabPanels.length; i++) {
+            tabPanels[i].style.display = "none";
+            tabPanels[i].removeAttribute("tabindex");
+        }
+
+        for (i = 0; i < tabs.length; i++) {
+          tabs[i].setAttribute("aria-selected", "false");
+          tabs[i].setAttribute("style", "background: default");
+        }
+        
+        // find panel to open through the aria-controls of the clicked tab button
+        var tabPanelToOpen = document.getElementById(
+          target.getAttribute("aria-controls")
+        );
+        
+        // open selected tab and set focus on content so user bypasses other tabs
+        tabPanelToOpen.style.display = "block";
+        tabPanelToOpen.setAttribute("tabindex", -1);
+        tabPanelToOpen.focus();
+        
+        // highlight open tab button and update aria
+        target.setAttribute("aria-selected", "true");
+        target.setAttribute("style", "background: yellow");
+      }
+      
+      // add ability to navigate tabs using arrow keys
+      tabList.addEventListener("keydown", e => {
+        
+        if (e.keyCode === 39 || e.keyCode === 37) {
+          var selected = document.activeElement;
+          
+          // move right on right arrow
+          if (e.keyCode === 39) {
+            if (selected.nextElementSibling) {
+              selected.nextElementSibling.click();
+              selected.nextElementSibling.focus();
+            }
+            
+          // move left on left arrow
+          } else if (e.keyCode === 37) {
+            if (selected.previousElementSibling) {
+              selected.previousElementSibling.click();
+              selected.previousElementSibling.focus();
+            }
+          }
+          
+        }
+        
+      });
+    </script>
+</html>
