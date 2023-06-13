@@ -323,9 +323,9 @@ var pNav = document.getElementById("Nav");
 function toggleSubNav(eID) {
   try {
     // Get all the top-level items and get the buttons
-    var allButtons = document.querySelectorAll("#Nav > div > ul > li >  button");
+    var allButtons = document.querySelectorAll("#Nav > div > div > div > ul > li >  button");
     // Get all sub-menus
-    var allSubMenus = document.querySelectorAll("#Nav > div > ul > li > button + ul");
+    var allSubMenus = document.querySelectorAll("#Nav > div > div > div > ul > li > button + ul");
     if (eID !== "") {
       // Get the button
       var toggle = document.querySelector("#" + eID);
