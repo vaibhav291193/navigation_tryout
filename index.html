@@ -10,6 +10,142 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
 <style>
+
+button {
+  font-size: 1em;
+}
+      
+h2 {
+  margin-top: 3em;
+}
+
+.tabList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.tabList a {
+  display: block;
+  float: left;
+  border: 1px solid #000;
+  padding: .25em 2em;
+  margin: 0 0 -8px .25em;
+  border-radius: .5em .5em 0 0;
+  background-color: #aaa;
+}
+
+.tabList a:link, .tabList a:visited, .tabList a:hover, .tabList a:focus, .tabList a:active {
+  text-decoration: none;
+  color: #000;
+}
+
+.tabList a:hover, .tabList a:focus {
+  background-color: #ccc;
+}
+
+.tabList a.selected {
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.tabPanels div {
+  clear: left;
+  margin: 0 auto;
+  padding: 1em 2em;
+  border-radius: .25em;
+  background-color: #fff;
+  display: none;
+}
+
+.tabPanels div.selected, div[aria-hidden=false] {
+  display: block;
+}
+
+.hide, div[aria-hidden=true] {
+  display: none;
+}
+
+
+body {
+  padding: 0 1rem;
+  font-size: 125%;
+  line-height: 1.5;
+  margin: 1.5rem auto;
+  font-family: Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+}
+
+[role="tablist"] {
+  padding: 0;
+}
+
+[role="tablist"] li, [role="tablist"] a {
+  display: inline-block;
+}
+
+[role="tablist"] a {
+  text-decoration: none;
+  padding: 0.5rem 1em;
+}
+
+[role="tablist"] [aria-selected] {
+  border: 2px solid #000;
+  background: #fff;
+  position: relative;
+  top: 2px;
+}
+
+[role="tabpanel"] {
+  border: 2px solid;
+  padding: 1.5rem;
+}
+
+[role="tabpanel"] * + * {
+  margin-top: 0.75rem;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 4px lightBlue;
+}
+
+@media (max-width: 550px) {
+  
+  [role="tablist"] li, [role="tablist"] a {
+    display: block;
+    position: static;
+  }
+  
+  [role="tablist"] a {
+    border: 2px solid #222 !important;
+  }
+  
+  [role="tablist"] li + li a {
+    border-top: 0 !important;
+  }
+  
+  [role="tablist"] [aria-selected] {
+    position: static;
+  }
+  
+  [role="tablist"] [aria-selected]::after {
+    content: '\0020⬅';
+  }
+  
+  [role="tabpanel"] {
+    border-top: 0;
+  }
+  
+}
+
+    </style>
+
+
+<style>
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body {
@@ -258,7 +394,7 @@ nav > ul > li.selected:hover {
         </button>
       </div>
 </div>      
-
+</div>
 <div class="col-md-4" style="display:inline;">
 <a href="#">Shop</a>
 <button>Sign in</button>
@@ -268,10 +404,11 @@ nav > ul > li.selected:hover {
 </nav>
 
 <nav aria-label="Secondary" id="Nav">
-      <div id="apples-panel"  
-           class="panel" aria-labelledby="apples-tab">
-        <ul>
-      <li class="selected">
+<div class="col-md-8" style="display: inline;">      
+<div id="apples-panel"  
+           class="panel" aria-labelledby="apples-tab" style="display: inline;">
+        <ul style="display: inline;">
+      <li class="selected" style="display: inline;">
                 <button type="button" id="perBtnItem02" aria-controls="perSubItem02" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         Receiving
           </button>
@@ -282,7 +419,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?2d" aria-current="page">Mobile Apps</a></li>
         </ul>
       </li>
-            <li>        <button type="button" id="perBtnItem04" aria-controls="perSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+            <li style="display: inline;">        <button type="button" id="perBtnItem04" aria-controls="perSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
       Sending  
           </button>
         <ul id="perSubItem04" style="display:none;">
@@ -294,7 +431,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?4f">Buy stamps</a></li>
         </ul>
       </li>
-      <li>
+      <li style="display: inline;">
                 <button type="button" id="perBtnItem05" aria-controls="perSubItem05" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         Money Services
           </button>
@@ -305,7 +442,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?5d">Gift Cards</a></li>
         </ul>
       </li>
-      <li>
+      <li style="display: inline;">
                 <button type="button" id="perBtnItem06" aria-controls="perSubItem06" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         Collectibles
           </button>
@@ -322,9 +459,9 @@ nav > ul > li.selected:hover {
 
       </div>
       <div id="bananas-panel"  
-           class="panel" aria-labelledby="bananas-tab" style="display: none">
-<ul>
-      <li class="selected">
+           class="panel" aria-labelledby="bananas-tab" style="display: none" >
+<ul style="display: inline;">
+      <li class="selected" style="display: inline;">
                 <button type="button" id="entBtnItem02" aria-controls="entSubItem02" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         Shipping
           </button>
@@ -335,7 +472,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?2d" aria-current="page">Talk to Agent</a></li>
         </ul>
       </li>
-            <li>        <button type="button" id="entBtnItem04" aria-controls="entSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+            <li style="display: inline;">        <button type="button" id="entBtnItem04" aria-controls="entSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
       Marketing  
           </button>
         <ul id="entSubItem04" style="display:none;">
@@ -345,7 +482,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?4d">Talk to Agent</a></li>
                   </ul>
       </li>
-      <li>
+      <li style="display: inline;">
                 <button type="button" id="entBtnItem05" aria-controls="entSubItem05" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         E-commerce
           </button>
@@ -355,7 +492,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?5c">Sign Up for Discounts</a></li>
                   </ul>
       </li>
-      <li>
+      <li style="display: inline;">
                 <button type="button" id="entBtnItem06" aria-controls="entSubItem06" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         Postal Services
           </button>
@@ -372,10 +509,10 @@ nav > ul > li.selected:hover {
         
       </div>
       <div id="peaches-panel"  
-           class="panel" aria-labelledby="peaches-tab" style="display: none">
+           class="panel" aria-labelledby="peaches-tab" style="display: none" >
 
-<ul>
-      <li class="selected">
+<ul style="display: inline;">
+      <li class="selected" style="display: inline;">
                 <button type="button" id="ourBtnItem02" aria-controls="ourSubItem02" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         About Us
           </button>
@@ -386,7 +523,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?2d" aria-current="page">Financial Reports</a></li>
         </ul>
       </li>
-            <li>        <button type="button" id="ourBtnItem04" aria-controls="ourSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+            <li style="display: inline;">        <button type="button" id="ourBtnItem04" aria-controls="ourSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
       Community Involvement  
           </button>
         <ul id="ourSubItem04" style="display:none;">
@@ -398,7 +535,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?4f">Indigenous Student Awards</a></li>
         </ul>
       </li>
-      <li>
+      <li style="display: inline;">
                 <button type="button" id="ourBtnItem05" aria-controls="ourSubItem05" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         Work With Us
           </button>
@@ -409,7 +546,7 @@ nav > ul > li.selected:hover {
           <li><a href="http://example.com/?5d">Apply Now</a></li>
         </ul>
       </li>
-      <li>
+      <li style="display: inline;">
                 <button type="button" id="ourBtnItem06" aria-controls="ourSubItem06" aria-expanded="false"  onclick="toggleSubNav(this.id);">
         Media Centre
           </button>
@@ -423,8 +560,23 @@ nav > ul > li.selected:hover {
 </ul>
       </div>
       
-    </div><!-- .tabs -->
-    </nav>
+    </div>
+ 
+<div class="col-md-4" style="display: inline;">
+<ul style="display: inline;">      
+<li style="display: inline;">        <button type="button" id="btnItem07" aria-controls="SubItem07" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        Tools
+          </button>
+        <ul id="SubItem07" style="display:none;">
+          <li><a href="http://example.com/?7a">Track</a></li>
+          <li><a href="http://example.com/?7b">Mail Forwarding</a></li>
+          <li><a href="http://example.com/?7c">Hold Mail</a></li>
+        </ul>
+      </li>
+    </ul>
+
+</div>
+</nav>
     
       
 
@@ -467,7 +619,7 @@ nav > ul > li.selected:hover {
         );
         
         // open selected tab and set focus on content so user bypasses other tabs
-        tabPanelToOpen.style.display = "block";
+        tabPanelToOpen.style.display = "inline";
         tabPanelToOpen.setAttribute("tabindex", -1);
         tabPanelToOpen.focus();
         
