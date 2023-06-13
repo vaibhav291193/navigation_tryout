@@ -26,7 +26,7 @@ h2 {
 }
 
 .tabList a {
-  display: block;
+  display: inline;
   float: left;
   border: 1px solid #000;
   padding: .25em 2em;
@@ -59,7 +59,7 @@ h2 {
 }
 
 .tabPanels div.selected, div[aria-hidden=false] {
-  display: block;
+  display: inline;
 }
 
 .hide, div[aria-hidden=true] {
@@ -116,7 +116,7 @@ body {
 @media (max-width: 550px) {
   
   [role="tablist"] li, [role="tablist"] a {
-    display: block;
+    display: inline;
     position: static;
   }
   
@@ -374,7 +374,8 @@ nav > ul > li.selected:hover {
 
 <div class="col-md-2 row"></div>
 <div class="col-md-8 row" >
-<div class="row" style="padding-bottom: 32px;">
+<header>
+<div class="row col" style="padding-bottom: 32px;">
 <a href="https://www.canadapost-postescanada.ca/cpc/en?name=tgt"><img src="https://www.canadapost-postescanada.ca/cpc/assets/cpc/img/logos/cpc-main-logo.svg" alt="Canada Post"></a>
 </div>
 <nav aria-label="Primary">
@@ -585,7 +586,13 @@ nav > ul > li.selected:hover {
 </div>
 </div>
 </nav>
-    
+    </header>
+<main>
+<div class ="col-md-12 row" style="padding-top: 32px;">
+<h1>Mailing and Shipping</h1>
+
+</div>
+</main>
       
 
 
