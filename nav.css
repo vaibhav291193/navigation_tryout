@@ -112,7 +112,7 @@ nav > ul li > ul {
 }
 
 nav > ul ul a {
-  display: block;
+  display: inline;
   font-size: 95%;
   margin: 0;
   padding: 0.5em 1.3em;
