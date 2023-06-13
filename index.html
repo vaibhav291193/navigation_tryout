@@ -6,10 +6,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Navigation Tryout</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/disclosure/examples/css/disclosure-navigation.css" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-<script src="https://www.w3.org/WAI/content-assets/wai-aria-practices/patterns/disclosure/examples/js/disclosureMenu.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  background-color: #eeeeee;
+  font-size: 100%;
+  color: #333;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+header,
+nav,
+main {
+  display: block;
+  box-sizing: border-box;
+  width: auto;
+  padding: 1em 1vw;
+  margin: 1em 1vw;
+  color: #000;
+}
+
+header,
+nav {
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  margin-top: 0.5em;
+  background-color: #ddd;
+  font-size: 90%;
+}
+
+nav ul,
+nav li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav > ul {
+  display: flex;
+  flex-wrap: no-wrap; /* RWD */
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+
+nav > ul > li {
+  flex: 1 1 auto; /* RWD */
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: 0 1em;
+  border-right: 0.1em solid #ccc;
+  border-bottom: 0.1em solid #ccc;
+  position: relative;
+}
+
+nav > ul > li:first-child {
+  border-left: 0.1em solid #ccc;
+}
+
+nav > ul > li > a {
+  padding: 1em 0;
+  text-align: center;
+}
+
+nav > ul > li > * {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+}
+
+nav > ul > li > button {
+  flex: 0 0 1em;
+  border: 0.15em solid #000;
+  border-radius: 50%;
+  line-height: 0;
+  outline: none;
+  text-align: center;
+  padding: 0.15em 0.15em 0.05em 0.15em;
+  margin: 1.1em 1em 0 1em;
+}
+
+nav > ul > li > a + button svg {
+  width: 1em;
+  height: 1em;
+  fill: #000;
+  transition: transform 0.25s ease-in;
+  transform-origin: center 45%;
+}
+
+button[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+nav > ul li > ul {
+  position: absolute;
+  top: 100%;
+  left: -0.1em;
+  right: -0.5em;
+  width: auto;
+  min-width: 12em;
+  height: auto;
+  overflow: visible;
+  z-index: 10;
+  margin: 0;
+  padding: 1em 0;
+  border: 0.01em solid transparent;
+}
+
+nav > ul ul a {
+  display: block;
+  font-size: 95%;
+  margin: 0;
+  padding: 0.5em 1.3em;
+}
+
+nav > ul ul a:hover,
+nav > ul ul a:focus {
+  background-color: #ccc;
+}
+
+@media screen and (min-width: 60em) {
+  /* At arbitrary desktop width, keep right menu from going out of viewport */
+  nav > ul li:last-child > ul {
+    left: auto;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  body {
+    background-color: #ffe;
+  }
+  nav > ul {
+    /* Has to happen in a max-width MQ */
+    /* Sorry, no mobile-first in this case */
+    flex-wrap: wrap; /* RWD */
+  }
+  nav > ul > li {
+    border-right: 0.05em solid #ccc;
+    border-left: 0.05em solid #ccc;
+  }
+  nav > ul > li:first-child {
+    border-left-width: 0.05em;
+  }
+  nav > ul li > ul {
+    right: 0;
+  }
+}
+
+@media screen and (-ms-high-contrast: active) {
+  nav {
+    border-top: 0.1em solid windowText;
+  }
+}
+
+/* Colors */
+
+nav,
+nav ul,
+nav button,
+nav > ul ul a:hover,
+nav > ul ul a:focus {
+  background-color: #013461;
+}
+
+nav a,
+nav a:link,
+nav a:visited,
+nav a:hover,
+nav a:focus,
+nav a:active {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+nav > ul > li > a + button svg {
+  fill: #fff;
+}
+
+nav > ul > li,
+nav > ul > li > button,
+nav > ul > li:first-child {
+  border-color: #0f5f8c;
+}
+
+nav > ul > li > button:hover,
+nav > ul > li > button:focus {
+  border-color: #fff;
+}
+
+nav > ul > li:hover,
+nav > ul > li > a:hover,
+nav > ul > li > a:focus,
+nav > ul li > ul {
+  background-color: #005c90;
+}
+
+nav > ul > li:focus-within {
+  /* Keep separate for IE11 */
+  background-color: #005c90;
+}
+
+nav > ul > li a[aria-current="page"],
+nav > ul > li:hover a[aria-current="page"],
+nav > ul > li:focus a[aria-current="page"],
+nav > ul > li.selected,
+nav > ul > li.selected:hover {
+  background-color: #187aba;
+  border-color: #187aba;
+}
+</style>
+
+
+
 </head>
 
 <body>
@@ -25,15 +246,15 @@
         <button type="button" role="tab" aria-selected="true" 
             id="apples-tab" aria-controls="apples-panel" 
             style="background: yellow">
-          Apples
+          Personal
         </button>
         <button type="button" role="tab" aria-selected="false" 
             id="bananas-tab" aria-controls="bananas-panel">
-          Bananas
+          Enterprise
         </button>
         <button type="button" role="tab" aria-selected="false" 
             id="peaches-tab" aria-controls="peaches-panel">
-          Peaches
+          Our Company
         </button>
       </div>
 </div>      
@@ -46,143 +267,160 @@
 </div>
 </nav>
 
-<nav aria-label="Secondary">
+<nav aria-label="Secondary" id="Nav">
       <div id="apples-panel"  
-           aria-labelledby="apples-tab">
-<nav>        
-<ul id="exTest" class="disclosure-nav">
-    <li>
-      <button type="button"
-              aria-expanded="true"
-              aria-controls="id_about_menu">
-        About
-      </button>
-      <ul id="id_about_menu">
-        <li>
-          <a href="#mythical-page-content">
-            Overview
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Administration
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Facts
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Campus Tours
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <button type="button"
-              aria-expanded="true"
-              aria-controls="id_admissions_menu">
-        Admissions
-      </button>
-      <ul id="id_admissions_menu">
-        <li>
-          <a href="#mythical-page-content">
-            Apply
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Tuition
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Sign Up
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Visit
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Photo Tour
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Connect
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <button type="button"
-              aria-expanded="true"
-              aria-controls="id_academics_menu">
-        Academics
-      </button>
-      <ul id="id_academics_menu">
-        <li>
-          <a href="#mythical-page-content">
-            Colleges & Schools
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Programs of Study
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Honors Programs
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Online Courses
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Course Explorer
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Register for Class
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Academic Calendar
-          </a>
-        </li>
-        <li>
-          <a href="#mythical-page-content">
-            Transcripts
-          </a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+           class="panel" aria-labelledby="apples-tab">
+        <ul>
+      <li class="selected">
+                <button type="button" id="perBtnItem02" aria-controls="perSubItem02" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        Receiving
+          </button>
+        <ul id="perSubItem02" style="display:none;">
+          <li><a href="http://example.com/?2a">My Mail</a></li>
+          <li><a href="http://example.com/?2b">Manage incoming mail</a></li>
+          <li><a href="http://example.com/?2c">Contact</a></li>
+          <li><a href="http://example.com/?2d" aria-current="page">Mobile Apps</a></li>
+        </ul>
+      </li>
+            <li>        <button type="button" id="perBtnItem04" aria-controls="perSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+      Sending  
+          </button>
+        <ul id="perSubItem04" style="display:none;">
+          <li><a href="http://example.com/?4a">Find a Rate</a></li>
+          <li><a href="http://example.com/?4b">Find a Post Office</a></li>
+          <li><a href="http://example.com/?4c">Find a Postal Code</a></li>
+          <li><a href="http://example.com/?4d">Manage outgoing mail</a></li>
+          <li><a href="http://example.com/?4e">Community Mailbox</a></li>
+          <li><a href="http://example.com/?4f">Buy stamps</a></li>
+        </ul>
+      </li>
+      <li>
+                <button type="button" id="perBtnItem05" aria-controls="perSubItem05" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        Money Services
+          </button>
+        <ul id="perSubItem05" style="display:none;">
+          <li><a href="http://example.com/?5a">Send Money</a></li>
+          <li><a href="http://example.com/?5b">International Money Transfer</a></li>
+          <li><a href="http://example.com/?5c">Loans</a></li>
+          <li><a href="http://example.com/?5d">Gift Cards</a></li>
+        </ul>
+      </li>
+      <li>
+                <button type="button" id="perBtnItem06" aria-controls="perSubItem06" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        Collectibles
+          </button>
+        <ul id="perSubItem06" style="display:none;">
+          <li><a href="http://example.com/?6a">Stamps</a></li>
+          <li><a href="http://example.com/?6b">Coins</a></li>
+          <li><a href="http://example.com/?6c">Magazine</a></li>
+          <li><a href="http://example.com/?6d">Suggest a Stamp</a></li>
+        </ul>
+      </li>
+</ul>
+
+
 
       </div>
-      <div id="bananas-panel" role="tabpanel" 
-           aria-labelledby="bananas-tab" style="display: none">
-        <h3>Bananas</h3>
-        <p>Don't slip on your banana peel!</p>
-        <a href="banana.html">Peel me</a>
+      <div id="bananas-panel"  
+           class="panel" aria-labelledby="bananas-tab" style="display: none">
+<ul>
+      <li class="selected">
+                <button type="button" id="entBtnItem02" aria-controls="entSubItem02" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        Shipping
+          </button>
+        <ul id="entSubItem02" style="display:none;">
+          <li><a href="http://example.com/?2a">Domestic Shipping</a></li>
+          <li><a href="http://example.com/?2b">International Shipping</a></li>
+          <li><a href="http://example.com/?2c">Ship to USA</a></li>
+          <li><a href="http://example.com/?2d" aria-current="page">Talk to Agent</a></li>
+        </ul>
+      </li>
+            <li>        <button type="button" id="entBtnItem04" aria-controls="entSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+      Marketing  
+          </button>
+        <ul id="entSubItem04" style="display:none;">
+          <li><a href="http://example.com/?4a">Precision Targeter</a></li>
+          <li><a href="http://example.com/?4b">Direct Mail</a></li>
+          <li><a href="http://example.com/?4c">Campaigns</a></li>
+          <li><a href="http://example.com/?4d">Talk to Agent</a></li>
+                  </ul>
+      </li>
+      <li>
+                <button type="button" id="entBtnItem05" aria-controls="entSubItem05" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        E-commerce
+          </button>
+        <ul id="entSubItem05" style="display:none;">
+          <li><a href="http://example.com/?5a">E-commerce Solutions</a></li>
+          <li><a href="http://example.com/?5b">Get APIs</a></li>
+          <li><a href="http://example.com/?5c">Sign Up for Discounts</a></li>
+                  </ul>
+      </li>
+      <li>
+                <button type="button" id="entBtnItem06" aria-controls="entSubItem06" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        Postal Services
+          </button>
+        <ul id="entSubItem06" style="display:none;">
+          <li><a href="http://example.com/?6a">Rent a Post Office Box</a></li>
+          <li><a href="http://example.com/?6b">Document Sharing</a></li>
+          <li><a href="http://example.com/?6c">Digital Mail</a></li>
+          <li><a href="http://example.com/?6d">Snapship</a></li>
+        </ul>
+      </li>
+</ul>
+
+
+        
       </div>
-      <div id="peaches-panel" role="tabpanel" 
-           aria-labelledby="peaches-tab" style="display: none">
-        <h3>Peaches</h3>
-        <p>Peaches keep peaching!</p>
-        <a href="peach.html">Get peachy</a>
+      <div id="peaches-panel"  
+           class="panel" aria-labelledby="peaches-tab" style="display: none">
+
+<ul>
+      <li class="selected">
+                <button type="button" id="ourBtnItem02" aria-controls="ourSubItem02" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        About Us
+          </button>
+        <ul id="ourSubItem02" style="display:none;">
+          <li><a href="http://example.com/?2a">Leadership</a></li>
+          <li><a href="http://example.com/?2b">Corporate Responsibility</a></li>
+          <li><a href="http://example.com/?2c">Commitment to Transparency</a></li>
+          <li><a href="http://example.com/?2d" aria-current="page">Financial Reports</a></li>
+        </ul>
+      </li>
+            <li>        <button type="button" id="ourBtnItem04" aria-controls="ourSubItem04" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+      Community Involvement  
+          </button>
+        <ul id="ourSubItem04" style="display:none;">
+          <li><a href="http://example.com/?4a">Santa Mail</a></li>
+          <li><a href="http://example.com/?4b">Apply for Grants</a></li>
+          <li><a href="http://example.com/?4c">Community Foundation</a></li>
+          <li><a href="http://example.com/?4d">Kids Activities</a></li>
+          <li><a href="http://example.com/?4e">Localization</a></li>
+          <li><a href="http://example.com/?4f">Indigenous Student Awards</a></li>
+        </ul>
+      </li>
+      <li>
+                <button type="button" id="ourBtnItem05" aria-controls="ourSubItem05" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        Work With Us
+          </button>
+        <ul id="ourSubItem05" style="display:none;">
+          <li><a href="http://example.com/?5a">Careers</a></li>
+          <li><a href="http://example.com/?5b">Join Us</a></li>
+          <li><a href="http://example.com/?5c">Equal Opportunity</a></li>
+          <li><a href="http://example.com/?5d">Apply Now</a></li>
+        </ul>
+      </li>
+      <li>
+                <button type="button" id="ourBtnItem06" aria-controls="ourSubItem06" aria-expanded="false"  onclick="toggleSubNav(this.id);">
+        Media Centre
+          </button>
+        <ul id="ourSubItem06" style="display:none;">
+          <li><a href="http://example.com/?6a">Press Events</a></li>
+          <li><a href="http://example.com/?6b">News</a></li>
+          <li><a href="http://example.com/?6c">Service Alerts</a></li>
+          <li><a href="http://example.com/?6d">Service Interruptions</a></li>
+        </ul>
+      </li>
+</ul>
       </div>
       
     </div><!-- .tabs -->
@@ -201,7 +439,7 @@
 <script>
       var tabs = document.querySelectorAll("[role=tab]"),
           tabList = document.querySelector("[role=tablist]"),
-          tabPanels = document.querySelectorAll("[role=tabpanel]"); 
+          tabPanels = document.querySelectorAll("[class=panel]"); 
       
       for (i = 0; i < tabs.length; i++) {
         tabs[i].addEventListener("click", showTabPanel);
@@ -214,12 +452,14 @@
         for (i = 0; i < tabPanels.length; i++) {
             tabPanels[i].style.display = "none";
             tabPanels[i].removeAttribute("tabindex");
-        }
+        
+}
 
         for (i = 0; i < tabs.length; i++) {
           tabs[i].setAttribute("aria-selected", "false");
           tabs[i].setAttribute("style", "background: default");
-        }
+        
+}
         
         // find panel to open through the aria-controls of the clicked tab button
         var tabPanelToOpen = document.getElementById(
@@ -261,4 +501,86 @@
         
       });
     </script>
+<script>
+
+// Get the nav by id
+var pNav = document.getElementById("Nav");
+
+function toggleSubNav(eID) {
+  try {
+    // Get all the top-level items and get the buttons
+    var allButtons = document.querySelectorAll("#Nav > div > ul > li >  button");
+    // Get all sub-menus
+    var allSubMenus = document.querySelectorAll("#Nav > div > ul > li > button + ul");
+    if (eID !== "") {
+      // Get the button
+      var toggle = document.querySelector("#" + eID);
+      // Find out what the button controls
+      var subMenuIdent = toggle.getAttribute("aria-controls");
+      // Get that thing it controls
+      var subMenu = document.getElementById(subMenuIdent);
+      // Toggle text and expanded state
+      if (toggle.getAttribute("aria-expanded") === "false") {
+        // Loop through all buttons and mark as closed
+        for (var i = 0; i < allButtons.length; i++) {
+          allButtons[i].setAttribute("aria-expanded", "false");
+          // allButtons[i].setAttribute("aria-label", "Show");
+        //   allButtons[i].innerHTML = arrowShow;
+        }
+        // Now mark the chosen button as opened
+        toggle.setAttribute("aria-expanded", "true");
+        // toggle.setAttribute("aria-label", "Hide");
+      } else {
+        // Close chosen button; no need to loop through rest of nodes
+        toggle.setAttribute("aria-expanded", "false");
+        // toggle.setAttribute("aria-label", "Show");
+      }
+      // Expand or collapse
+      if (subMenu.style.display === "none") {
+        // Hide all submenus
+        for (var i = 0; i < allSubMenus.length; i++) {
+          allSubMenus[i].style.display = "none";
+        }
+        // Show chosen submenu
+        subMenu.style.display = "block";
+      } else {
+        // Close chosen menu; no need to loop through rest of nodes
+        subMenu.style.display = "none";
+      }
+    }
+    if (eID !== "") {
+    } else {
+      // Hide all submenus
+      for (var i = 0; i < allSubMenus.length; i++) {
+        allSubMenus[i].style.display = "none";
+      }
+      // Loop through all buttons and mark as closed
+      for (var i = 0; i < allButtons.length; i++) {
+        allButtons[i].setAttribute("aria-expanded", "false");
+        // allButtons[i].setAttribute("aria-label", "Show");
+        // allButtons[i].innerHTML = arrowShow;
+      }
+    }
+  } catch (e) {
+    console.log("toggleSubNav(): " + e);
+  }
+}
+
+document.onkeydown = function(evt) {
+  evt = evt || window.event;
+  var isEscape = false;
+  if ("key" in evt) {
+    isEscape = evt.key == "Escape" || evt.key == "Esc";
+  } else {
+    isEscape = evt.keyCode == 27;
+  }
+  if (isEscape) {
+    //alert("Escape");
+    toggleSubNav("");
+  }
+};
+
+
+</script>
+
 </html>
