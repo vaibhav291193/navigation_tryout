@@ -1,6 +1,6 @@
 
 body {
-  background-color: #eeeeee;
+  background-color: #ffffff;
   font-size: 100%;
   color: #333;
   font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto,
@@ -165,7 +165,7 @@ nav ul,
 nav button,
 nav > ul ul a:hover,
 nav > ul ul a:focus {
-  background-color: #013461;
+  background-color: #ffffff;
 }
 
 nav a,
