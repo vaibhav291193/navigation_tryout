@@ -235,9 +235,11 @@
 <div class ="col-md-12 row" style="padding-top: 32px;">
 <h1>Mailing and Shipping</h1>
 <p>
-<a href="index.html">Previous Style</a>
+<a href="index.html">Style 1</a>
+<a href="no-focus-movement.html">Style 2</a>
+<a href="style-3.html">Style 3</a>
 </p>
-
+<p aria-live="polite" id="announcementLive"></p>
 </div>
 </main>
       
@@ -284,8 +286,9 @@
         tabPanelToOpen.style.display = "inline";
         tabPanelToOpen.setAttribute("tabindex", -1);
         //tabPanelToOpen.focus();
-        
-        // highlight open tab button and update aria
+document.getElementById("announcementLive").setAttribute("innerHTML", "Loading navigation items for " + target.innerHTML);
+
+// highlight open tab button and update aria
         target.setAttribute("aria-selected", "true");
         target.setAttribute("style", "background: yellow");
       }

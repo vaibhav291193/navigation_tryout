@@ -8,10 +8,9 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
 <link href="tabs.css" rel="stylesheet">
 <link href="nav.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -30,17 +29,17 @@
 <div class="tabs" style="display:inline;">
       
       <div role="tablist" style="display:inline;">
-        <button type="button" role="tab" aria-selected="true" 
+        <button type="button"  class="tabs" aria-expanded="true" 
             id="apples-tab" aria-controls="apples-panel" 
-            >
+            style="background: yellow">
           Personal
         </button>
-        <button type="button" role="tab" aria-selected="false" 
+        <button type="button"  aria-expanded="false" class="tabs"
             id="bananas-tab" aria-controls="bananas-panel">
           Enterprise
         </button>
-        <button type="button" role="tab" aria-selected="false" 
-            id="peaches-tab" aria-controls="peaches-panel">
+        <button type="button"  aria-expanded="false" 
+            class="tabs" id="peaches-tab" aria-controls="peaches-panel">
           Our Company
         </button>
       </div>
@@ -239,7 +238,10 @@
 <a href="index.html">Style 1</a>
 <a href="no-focus-movement.html">Style 2</a>
 <a href="style-3.html">Style 3</a>
+
+
 </p>
+<p aria-live="polite" id="announcementLive"></p>
 </div>
 </main>
       
@@ -253,7 +255,7 @@
 </body>
 
 <script>
-      var tabs = document.querySelectorAll("[role=tab]"),
+      var tabs = document.querySelectorAll("[class=tabs]"),
           tabList = document.querySelector("[role=tablist]"),
           tabPanels = document.querySelectorAll("[class=panel]"); 
       
@@ -272,7 +274,7 @@
 }
 
         for (i = 0; i < tabs.length; i++) {
-          tabs[i].setAttribute("aria-selected", "false");
+          tabs[i].setAttribute("aria-expanded", "false");
           tabs[i].setAttribute("style", "background: default");
         
 }
@@ -285,10 +287,11 @@
         // open selected tab and set focus on content so user bypasses other tabs
         tabPanelToOpen.style.display = "inline";
         tabPanelToOpen.setAttribute("tabindex", -1);
-        tabPanelToOpen.focus();
-        
-        // highlight open tab button and update aria
-        target.setAttribute("aria-selected", "true");
+        //tabPanelToOpen.focus();
+document.getElementById("announcementLive").setAttribute("innerHTML", "Loading navigation items for " + target.innerHTML);
+
+// highlight open tab button and update aria
+        target.setAttribute("aria-expanded", "true");
         target.setAttribute("style", "background: yellow");
       }
       
@@ -325,7 +328,7 @@ var pNav = document.getElementById("Nav");
 function toggleSubNav(eID) {
   try {
     // Get all the top-level items and get the buttons
-    var allButtons = document.querySelectorAll("#Nav > div > div > div > ul > li > button");
+    var allButtons = document.querySelectorAll("#Nav > div > div > div > ul > li >  button");
     // Get all sub-menus
     var allSubMenus = document.querySelectorAll("#Nav > div > div > div > ul > li > button + ul");
     if (eID !== "") {
